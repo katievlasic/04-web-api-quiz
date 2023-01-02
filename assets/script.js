@@ -1,30 +1,41 @@
 // order matters query selector, first class chosen and doesn't look beyond 
 const startEl = document.getElementById("start")
 let countEl = document.getElementById('timeRemain');
-var timeLeft = 30;
-
+var timeLeft = 5;
 
 // Event listener to initiate countdown when click Start button
-
 startEl.addEventListener("click", function(){
-  countEl.textContent = timeLeft;
-  timeLeft--;
+  countdown();
+  startEl.style.display = 'none';
 });
 
 // TIMER
-
 function countdown() {
   var timeInterval = setInterval(function () {
-    timeLeft--; //decrementally down from declared value
-    if (timeLeft === 0) {
+    countEl.textContent = timeLeft;
+    // timeLeft--; //decrementally down from declared value
+    timeLeft--;
+    if (timeLeft > 1) {
+      countEl.textContent = timeLeft;
+    } 
+    else if (timeLeft === 1){
+      countEl.textContent = timeLeft;
+      timeLeft--;
+    }
+    else  {
+      countEl.textContent = '';
       clearInterval(timeInterval);
+      displayForm();
     } 
   }, 
   1000);
 }
 
-countdown();
-console.log(countEl);
+console.log(timeLeft + ' seconds starting amount of time');
+
+function displayForm(){
+  document.getElementById("ini").style.visibility = "visible";
+}
 
 
 //setInterval and clearInterval are web APIs!
@@ -55,6 +66,8 @@ let questions = [
 // let userans
 // for 
 
+
+// NOTES FROM TUTOR SESSION 12-28-2022
 // append button in html 
 // on refresh of web page, anything appended will reset to original html
 // method of .innerHTML()
