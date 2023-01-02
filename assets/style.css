@@ -45,7 +45,7 @@ h1{
     letter-spacing: 5px;
 }
 
-.timeRemain{
+#timeRemain{
   display: flex;
   background-color: darkcyan;
   justify-content: center;

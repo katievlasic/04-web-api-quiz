@@ -1,41 +1,37 @@
-
-
-
-// Event listener on click of Start Button
-// chosing const since this variable will never be re-assigned another value
-// practice using const for all query selectors
 // order matters query selector, first class chosen and doesn't look beyond 
-const startEl = document.querySelector(".start")
+const startEl = document.getElementById("start")
+let countEl = document.getElementById('timeRemain');
+var timeLeft = 30;
 
-startEl.addEventListener('click', function(){
-    cardEl.setAttribute()
+
+// Event listener to initiate countdown when click Start button
+
+startEl.addEventListener("click", function(){
+  countEl.textContent = timeLeft;
+  timeLeft--;
 });
 
 // TIMER
-var timerEl = document.querySelector('.countdown');
-
-// Global variable so multiple functions can access ex. subtract time if wrong answer
-// var vs. let for scoping (let ES6 syntax)
-var timeLeft = 30;
 
 function countdown() {
-
-//setInterval and clearInterval are web APIs!
-var timeInterval = setInterval(function () {
+  var timeInterval = setInterval(function () {
     timeLeft--; //decrementally down from declared value
-    timerEl.textContent = timeLeft + "seconds left til"
-    if (timeLeft === 0){
+    if (timeLeft === 0) {
       clearInterval(timeInterval);
-} 
+    } 
   }, 
   1000);
 }
 
-// reset timer
-timerEl.setTime();
+countdown();
+console.log(countEl);
 
 
+//setInterval and clearInterval are web APIs!
 // Local storage for initials/ score
+
+// Global variable so multiple functions can access ex. subtract time if wrong answer
+// var vs. let for scoping (let ES6 syntax)
 
 // textContent()
 
@@ -55,11 +51,9 @@ let questions = [
   },
 ]
 
-// shift + alt + down arrow to copy
-
 // function that displays questions ^ 
-let userans
-for 
+// let userans
+// for 
 
 // append button in html 
 // on refresh of web page, anything appended will reset to original html
@@ -67,6 +61,8 @@ for
 // += js a way of adding new stuff
 // = "" will empty an area 
 
+
+// shift + alt + down arrow to copy lines of code
 // after pressing submit, reset back to 0 
 //     known completion of the quiz at this step
 
