@@ -37,12 +37,41 @@ function displayForm(){
   document.getElementById("ini").style.visibility = "visible";
 }
 
+// QUIZ QUESTIONS
 
-//setInterval and clearInterval are web APIs!
-// Local storage for initials/ score
+var question = document.querySelector("#q");
+var ans1 = document.querySelector("#one");
+var ans2 = document.querySelector("#two");
+var ans3 = document.querySelector("#three");
+var ans4 = document.querySelector("#four");
 
-// Global variable so multiple functions can access ex. subtract time if wrong answer
-// var vs. let for scoping (let ES6 syntax)
+question.textContent = "What format do you use to comment out lines of code in CSS?"
+ans1.textContent= "a. /* */";
+ans2.textContent= "b. <--! !-->";
+ans3.textContent= "c. //";
+ans4.textContent= "d. ! || !";
+
+function quiz(){
+
+}
+
+
+// STORE INITIALS AND SCORE ON SUBMIT
+
+var submitButton = document.getElementById("sub")
+
+submitButton.addEventListener("click", function(){
+  var enter = document.getElementsbyId("#ini").value;
+  // if (enter === "") {
+  //   dispalyMessage("error", "initials cannot be blank")
+  // }
+  // else {
+  //   displayMessage("sucess");
+  // }
+  localStorage.setItem("initials", enter);
+});
+
+
 
 // textContent()
 
@@ -74,11 +103,15 @@ let questions = [
 // += js a way of adding new stuff
 // = "" will empty an area 
 
+//setInterval and clearInterval are web APIs!
+// Local storage for initials/ score
 
 // shift + alt + down arrow to copy lines of code
 // after pressing submit, reset back to 0 
 //     known completion of the quiz at this step
 
+// Global variable so multiple functions can access ex. subtract time if wrong answer
+// var vs. let for scoping (let ES6 syntax)
 // view highscores can be a button that then hides the main div then shows previous 
 // display none for css within a class
 // different than hidden or visible since the framework still there but not seen to the user

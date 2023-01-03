@@ -56,10 +56,16 @@ h1{
 #ini {
     background-color: lightslategray;
     font-size: 25px;
+    margin: 25px;
+    padding: 10px;
     /* display: none; this completely removes the content*/
     visibility: hidden; 
 }
 
 .form p{
     font-size: 15px;
+}
+
+#sub{
+    font-size: 20px;
 }
