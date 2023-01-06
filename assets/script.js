@@ -1,7 +1,8 @@
 // order matters query selector, first class chosen and doesn't look beyond 
 const startEl = document.getElementById("start")
 let countEl = document.getElementById('timeRemain');
-var timeLeft = 5;
+let timeLeft = 5;
+let score = localStorage.getItem('score') || []; //set default score to 0
 
 // Event listener to initiate countdown when click Start button
 startEl.addEventListener("click", function(){
@@ -38,6 +39,50 @@ function displayForm(){
 }
 
 // QUIZ QUESTIONS
+let quest = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
+
+//this is an object! - use curly
+
+//access different objects in an array
+let personArray = [
+ {
+  firstName: "Katie",
+  lastName: "Vlasic",
+  cars: ["Mercedes", "honda", "ford"],
+  driving: "Mercedes" //answer key
+  //if cars[i]=driving then display yes else "wrong answer" and reduce timer
+},
+ {
+  firstName: "Dennis",
+  lastName: "Itua"
+},
+ {
+  firstName: "Tom",
+  lastName: "Brady" //ex. lastName is a key within the object index
+}
+]
+
+var pNew = personArray[0] //start question series here
+//create function pNew++ -- iterate through personArray
+//call function quiz()
+//critical to reset within quiz() to "" blank screen
+//evenetlisteners on button -- MDN event.target !! dyanmically target
+//console log element to see behavior of button (event.target)
+//innerHTML of textContent ex. if driving=cars
+
+
+//Tutor session with Dennis 1/6/22
+function quiz(){
+  quest.innerHTML=""
+  for (let index = 0; index < 3; index++) {
+  var q = document.createElement("button")
+      q.innerHTML=personArray[0].cars[index]
+      quest.appendChild(q)
+      q.setAttribute
+}
+  
+}
+quiz()
 
 var question = document.querySelector("#q");
 var ans1 = document.querySelector("#one");
@@ -45,16 +90,26 @@ var ans2 = document.querySelector("#two");
 var ans3 = document.querySelector("#three");
 var ans4 = document.querySelector("#four");
 
-question.textContent = "What format do you use to comment out lines of code in CSS?"
-ans1.textContent= "a. /* */";
-ans2.textContent= "b. <--! !-->";
-ans3.textContent= "c. //";
-ans4.textContent= "d. ! || !";
+// question.textContent = "What format do you use to comment out lines of code in CSS?"
+// ans1.textContent= "a. /* */";
+// ans2.textContent= "b. <--! !-->";
+// ans3.textContent= "c. //";
+// ans4.textContent= "d. ! || !";
 
 function quiz(){
 
 }
 
+//reference js elements not as tags!
+// head and body are children (siblings) in the html
+// ex. meta elements are children to head
+// ex. div elements are children to body (parent)
+
+//update children of div element class main
+
+// SCORE
+localStorage.setItem('score', JSON.stringify([0, 1, 2])); //create string from array
+console.log(score);
 
 // STORE INITIALS AND SCORE ON SUBMIT
 
@@ -115,3 +170,5 @@ let questions = [
 // view highscores can be a button that then hides the main div then shows previous 
 // display none for css within a class
 // different than hidden or visible since the framework still there but not seen to the user
+
+//Useful in local storage to turn inputs into strings instead of an array or object!!!
