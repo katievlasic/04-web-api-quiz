@@ -97,7 +97,7 @@ function quiz() {
     question.appendChild(q)
     q.setAttribute
   }
-  button.addEventListener("click", function() {
+  question.addEventListener("click", function() {
   var pNew = userArray[0] //start question series here
   //pNew++ -- iterate through Quiz Questions! userArray
   if (userA = userArray.ans) {
