@@ -39,30 +39,32 @@ function displayForm(){
 }
 
 // QUIZ QUESTIONS
-let quest = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
+let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
-//this is an object! - use curly
 
-//access different objects in an array
-let personArray = [
+//Setup array of objects
+//Objects are within {}
+//Keys (same) listed within multiple objects
+let userArray = [
  {
-  firstName: "Katie",
-  lastName: "Vlasic",
-  cars: ["Mercedes", "honda", "ford"],
-  driving: "Mercedes" //answer key
-  //if cars[i]=driving then display yes else "wrong answer" and reduce timer
+  quest: "What characters are used to comment out lines of code in JavaScript?",
+  options: ["<!-- -->","//","/* */","Ctrl+alt+delete"],
+  ans: "//" //answer key
+  //if options[i]=ans then DISPLAY yes else "wrong answer" and reduce timer
 },
  {
-  firstName: "Dennis",
-  lastName: "Itua"
+  quest: "Which is NOT an example of a combinator selector in CSS?",
+  options: ["li a {}","ul ~ p {}","a[href=''] {}","ul + p {}"],
+  ans: "a[href='']{}" //answer key
 },
  {
-  firstName: "Tom",
-  lastName: "Brady" //ex. lastName is a key within the object index
+  quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )",
+  options: ["click","mouseout","mousmove","updelete"],
+  ans: "updelete" //answer key
 }
 ]
 
-var pNew = personArray[0] //start question series here
+var pNew = userArray[0] //start question series here
 //create function pNew++ -- iterate through personArray
 //call function quiz()
 //critical to reset within quiz() to "" blank screen
@@ -84,17 +86,6 @@ function quiz(){
 }
 quiz()
 
-var question = document.querySelector("#q");
-var ans1 = document.querySelector("#one");
-var ans2 = document.querySelector("#two");
-var ans3 = document.querySelector("#three");
-var ans4 = document.querySelector("#four");
-
-// question.textContent = "What format do you use to comment out lines of code in CSS?"
-// ans1.textContent= "a. /* */";
-// ans2.textContent= "b. <--! !-->";
-// ans3.textContent= "c. //";
-// ans4.textContent= "d. ! || !";
 
 function quiz(){
 
