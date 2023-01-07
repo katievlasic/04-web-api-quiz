@@ -78,15 +78,12 @@ let userArray = [
 }
 ]
 const lengthQuiz = userArray.length;
-// let lengthQuest = userArray[i].options.length //Object.keys() another approach 
-// console.log("In this question, there are " + lengthQuest + " options")
 console.log("The total number of questions is " + lengthQuiz);
-
+const pNew = userArray[0] //start question series here
 
 //evenetlisteners on button -- MDN event.target !! dyanmically target
 //console log element to see behavior of button (event.target)
 //innerHTML of textContent ex. if driving=cars
-
 
 //Tutor session with Dennis 1/6/22
 function quiz() {
@@ -94,19 +91,22 @@ function quiz() {
   for (let i = 0; i < 4; i++) {
     var q = document.createElement("button")
     q.innerHTML=userArray[0].options[i]
-    question.appendChild(q)
+    question.appendChild(q) //HTML DOM Document Element
     q.setAttribute
   }
-  question.addEventListener("click", function() {
-  var pNew = userArray[0] //start question series here
-  //pNew++ -- iterate through Quiz Questions! userArray
-  if (userA = userArray.ans) {
-    pNew++
-  }
-})
 }
 
-
+question.addEventListener("click", function(e) {
+  let display = document.createElement("div")
+  if (options[i] = userArray.ans) {
+    pNew++
+    display.textContent = "Correct!"
+  }
+  else {
+    pNew++
+    display.textContent = "Wrong answer"
+  }
+})
 
 //Don't reference js as tags! Use the word element
 // head and body are children (siblings) in the html
@@ -159,7 +159,7 @@ let questions = [
 // for 
 
 
-// NOTES FROM TUTOR SESSION 12-28-2022
+// NOTES FROM TUTOR SESSION 12-28-2022 w/ Bobbi
 // append button in html 
 // on refresh of web page, anything appended will reset to original html
 // method of .innerHTML()

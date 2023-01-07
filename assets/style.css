@@ -14,14 +14,15 @@ body a{
 }
 
 /*children of body have this styling applied*/
-body > div > div > div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+/* body > div > div {
+    background-color: aqua;
+} */
+
 .main{
-    background-color: white;
+    margin-top: 50px;
     width: 50%;
-    margin: auto; 
+    margin-left: 25%;
+    margin-bottom: 50px; 
 }
 
 .main button{
@@ -32,12 +33,14 @@ body > div > div > div {
     flex-direction: column;
     width: 50%;
     flex: 1;
-    margin: auto;
+    margin-left: 25%;
+    margin-top: 5px;
 }
 
 button:hover{
     background-color: black;
     color: white;
+    border: dashed white;
 }
 
 .button{
@@ -71,16 +74,17 @@ h1{
 }
 
 #ini {
-    background-color: lightslategray;
+    background-color: white;
+    color: black;
     font-size: 25px;
     margin: auto;
-    width: 50%;
+    width: 40%;
     /* display: none; this completely removes the content*/
     visibility: hidden; 
 }
 
 .form p{
-    font-size: 15px;
+    font-size: 20px;
 }
 
 #sub{
