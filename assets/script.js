@@ -2,8 +2,9 @@
 // Declare Variables - order matters query selector, first class chosen and doesn't look beyond 
 const startEl = document.getElementById("start")
 let countEl = document.getElementById('timeRemain');
-let timeLeft = 60;
+let timeLeft = 5;
 let score = localStorage.getItem('score') || []; //set default score to 0
+let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
 // Event listener to initiate countdown when click Start button
 startEl.addEventListener("click", function(){
@@ -41,14 +42,13 @@ function displayForm(){
 }
 
 // QUIZ QUESTIONS
-let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
 //Setup array of objects //Objects are within {} //Keys (same) listed within multiple objects
 let userArray = [
  {
   quest: "What characters are used to comment out lines of code in JavaScript?",
   options: ["||","//","/* */","Ctrl+alt+delete"],
-  ans: "//" //answer key
+  ans: "//", //answer key
   //if options[i]=ans then DISPLAY yes else "wrong answer" and reduce timer
 },
  {
@@ -79,87 +79,70 @@ let userArray = [
 ]
 const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
-const pNew = userArray[0] //start question series here
 
-//evenetlisteners on button -- MDN event.target !! dyanmically target
-//console log element to see behavior of button (event.target)
-//innerHTML of textContent ex. if driving=cars
-
-//Tutor session with Dennis 1/6/22
 function quiz() {
   question.innerHTML="" //Reset screen every time so questions don't stack up
-  for (let i = 0; i < 4; i++) {
+  let pNew = userArray[0] //start question series here
+  let check = document.createElement("h2")
+    check.innerHTML=pNew.quest
+    question.appendChild(check)
+    check.setAttribute
+    for (let ii = 0; ii < 4; ii++) {
     var q = document.createElement("button")
-    q.innerHTML=userArray[0].options[i]
+    q.innerHTML=userArray[0].options[ii]
     question.appendChild(q) //HTML DOM Document Element
     q.setAttribute
+    q.addEventListener("click", function() {
+      // let display = document.createElement("div")
+      if (q = userArray[ii].ans) {
+        pNew++
+        // display.textContent = "Correct!"
+        alert("correct")
+      }
+      else {
+        pNew++
+        // display.textContent = "Wrong answer"
+        alert("wrong")
+      }
+    })
   }
 }
 
-question.addEventListener("click", function(e) {
-  let display = document.createElement("div")
-  if (options[i] = userArray.ans) {
-    pNew++
-    display.textContent = "Correct!"
-  }
-  else {
-    pNew++
-    display.textContent = "Wrong answer"
-  }
-})
 
+
+// SCORE
+
+// STORE INITIALS AND SCORE ON SUBMIT
+var submitButton = document.getElementById("sub")
+
+submitButton.addEventListener("click", function(){
+  localStorage.setItem('score', JSON.stringify([0, 1, 2])); //create string from array
+  console.log(score);
+  // if (enter === "") {
+    //   dispalyMessage("error", "initials cannot be blank")
+    // }
+    // else {
+      //   displayMessage("sucess");
+      // }
+      let initialIn = document.querySelector("input")
+      // let iKey = initialIn[]
+      // localStorage.setItem(iKey,initialIn);
+      console.log(initialIn);
+    });
+
+
+//NOTES FROM TUTOR SESSION 1-6-2023 w/ Dennis I.
 //Don't reference js as tags! Use the word element
 // head and body are children (siblings) in the html
 // ex. meta elements are children to head
 // ex. div elements are children to body (parent)
-
+//evenetlisteners on button -- MDN event.target !! dyanmically target
+//console log element to see behavior of button (event.target)
+//innerHTML of textContent ex. if driving=cars
 //update children of div element class main
 
-// SCORE
-localStorage.setItem('score', JSON.stringify([0, 1, 2])); //create string from array
-console.log(score);
 
-// STORE INITIALS AND SCORE ON SUBMIT
-
-var submitButton = document.getElementById("sub")
-
-submitButton.addEventListener("click", function(){
-  var enter = document.getElementsbyId("#ini").value;
-  // if (enter === "") {
-  //   dispalyMessage("error", "initials cannot be blank")
-  // }
-  // else {
-  //   displayMessage("sucess");
-  // }
-  localStorage.setItem("initials", enter);
-});
-
-
-
-// textContent()
-
-
-// Object array 
-let questions = [
-  // index 0 of array questions
-  {
-    question: "first question",
-    choice: ["one","two"],
-    answer: "one"
-  },
-  {
-    question: "second question",
-    choice: ["2","3"],
-    answer: "2"
-  },
-]
-
-// function that displays questions ^ 
-// let userans
-// for 
-
-
-// NOTES FROM TUTOR SESSION 12-28-2022 w/ Bobbi
+// NOTES FROM TUTOR SESSION 12-28-2022 w/ Bobbi T.
 // append button in html 
 // on refresh of web page, anything appended will reset to original html
 // method of .innerHTML()
