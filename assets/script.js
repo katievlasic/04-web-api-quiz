@@ -1,13 +1,15 @@
-// order matters query selector, first class chosen and doesn't look beyond 
+//START BUTTON
+// Declare Variables - order matters query selector, first class chosen and doesn't look beyond 
 const startEl = document.getElementById("start")
 let countEl = document.getElementById('timeRemain');
-let timeLeft = 5;
+let timeLeft = 60;
 let score = localStorage.getItem('score') || []; //set default score to 0
 
 // Event listener to initiate countdown when click Start button
 startEl.addEventListener("click", function(){
   countdown();
   startEl.style.display = 'none';
+  quiz()
 });
 
 // TIMER
@@ -41,14 +43,11 @@ function displayForm(){
 // QUIZ QUESTIONS
 let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
-
-//Setup array of objects
-//Objects are within {}
-//Keys (same) listed within multiple objects
+//Setup array of objects //Objects are within {} //Keys (same) listed within multiple objects
 let userArray = [
  {
   quest: "What characters are used to comment out lines of code in JavaScript?",
-  options: ["<!-- -->","//","/* */","Ctrl+alt+delete"],
+  options: ["||","//","/* */","Ctrl+alt+delete"],
   ans: "//" //answer key
   //if options[i]=ans then DISPLAY yes else "wrong answer" and reduce timer
 },
@@ -60,53 +59,56 @@ let userArray = [
  {
   quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )?",
   options: ["click","mouseout","mousmove","updelete"],
-  ans: "updelete" //answer key
+  ans: "updelete" 
 },
  {
   quest: "Which of the following is incorrect?",
   options: ["DOM=Document Object Model","URL=Universal Resource Location","API=Application Programming Interface","NaN=Not a number"],
-  ans: "URL=Universal Resource Location" //answer key
+  ans: "URL=Universal Resource Location" 
 },
  {
   quest: "How do you say the following character: % ? (Hint: not percent)",
   options: ["Modulus","Truthy","Division","Octothorp"],
-  ans: "Modulus" //answer key
-},
+  ans: "Modulus"
+ },
  {
   quest: "Which of the following is true?",
   options: ["camelCase","snake_case","PascalCase","All of the above"],
-  ans: "All of the above" //answer key
+  ans: "All of the above"
 }
 ]
+const lengthQuiz = userArray.length;
+// let lengthQuest = userArray[i].options.length //Object.keys() another approach 
+// console.log("In this question, there are " + lengthQuest + " options")
+console.log("The total number of questions is " + lengthQuiz);
 
-var pNew = userArray[0] //start question series here
-//create function pNew++ -- iterate through personArray
-//call function quiz()
-//critical to reset within quiz() to "" blank screen
+
 //evenetlisteners on button -- MDN event.target !! dyanmically target
 //console log element to see behavior of button (event.target)
 //innerHTML of textContent ex. if driving=cars
 
 
 //Tutor session with Dennis 1/6/22
-function quiz(){
-  quest.innerHTML=""
-  for (let index = 0; index < 3; index++) {
-  var q = document.createElement("button")
-      q.innerHTML=personArray[0].cars[index]
-      quest.appendChild(q)
-      q.setAttribute
+function quiz() {
+  question.innerHTML="" //Reset screen every time so questions don't stack up
+  for (let i = 0; i < 4; i++) {
+    var q = document.createElement("button")
+    q.innerHTML=userArray[0].options[i]
+    question.appendChild(q)
+    q.setAttribute
+  }
+  button.addEventListener("click", function() {
+  var pNew = userArray[0] //start question series here
+  //pNew++ -- iterate through Quiz Questions! userArray
+  if (userA = userArray.ans) {
+    pNew++
+  }
+})
 }
-  
-}
-quiz()
 
 
-function quiz(){
 
-}
-
-//reference js elements not as tags!
+//Don't reference js as tags! Use the word element
 // head and body are children (siblings) in the html
 // ex. meta elements are children to head
 // ex. div elements are children to body (parent)
