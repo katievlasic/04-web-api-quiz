@@ -58,9 +58,24 @@ let userArray = [
   ans: "a[href='']{}" //answer key
 },
  {
-  quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )",
+  quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )?",
   options: ["click","mouseout","mousmove","updelete"],
   ans: "updelete" //answer key
+},
+ {
+  quest: "Which of the following is incorrect?",
+  options: ["DOM=Document Object Model","URL=Universal Resource Location","API=Application Programming Interface","NaN=Not a number"],
+  ans: "URL=Universal Resource Location" //answer key
+},
+ {
+  quest: "How do you say the following character: % ? (Hint: not percent)",
+  options: ["Modulus","Truthy","Division","Octothorp"],
+  ans: "Modulus" //answer key
+},
+ {
+  quest: "Which of the following is true?",
+  options: ["camelCase","snake_case","PascalCase","All of the above"],
+  ans: "All of the above" //answer key
 }
 ]
 
