@@ -2,7 +2,7 @@
 // Declare Variables - order matters query selector, first class chosen and doesn't look beyond
 const startEl = document.getElementById("start");
 let countEl = document.getElementById("timeRemain");
-let timeLeft = 4;
+let timeLeft = 60;
 let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
 // Event listener to initiate countdown when click Start button
@@ -84,38 +84,43 @@ let userArray = [
 const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
 
+let incVar = 0;
+var pNew = userArray[incVar]; //start question series here
+
 function quiz() {
-  question.innerHTML = ""; //Reset screen every time so questions don't stack up
   let score = document.createElement("h3");
-  let pNew = userArray[0]; //start question series here
+  console.log("incVar " + incVar);
   score = []; //set default score to 0
   // console.log("pNew " + JSON.stringify(pNew));
   // console.log("pNew " + pNew);
   // console.log("pNew.quest " + pNew.quest);
-  console.log("pNew.ans " + pNew.ans);
-  console.log("pNew.options " + pNew.options);
+  // console.log("pNew.ans " + pNew.ans);
+  // console.log("pNew.options " + pNew.options);
+  question.innerHTML = ""; //Reset screen every time so questions don't stack up
   let check = document.createElement("h2");
   check.innerHTML = pNew.quest;
-  question.appendChild(check);
+  question.appendChild(check)
   for (let ii = 0; ii < 4; ii++) {
     var q = document.createElement("button");
     q.innerHTML = pNew.options[ii];
     question.appendChild(q); //HTML DOM Document Element
-    q.setAttribute;
+    q.setAttribute("class", "buttonJS");
+    // let updateButton = document.querySelectorAll(buttonJS);
     q.addEventListener("click", userSelect);
   }
-
   function userSelect(select) {
     let userAns = select.target.textContent;
-    let ansAns = userArray[0].ans;
+    let ansAns = pNew.ans;
     if (userAns === ansAns && timeLeft > 0) {
-      score += 1;
+      score ++;
       console.log(score);
       console.log(userAns);
+      incVar++;
     } else if (userAns != ansAns && timeLeft > 0) {
-      score -= 1;
+      score --;
       timeLeft -= 5;
       console.log("score (wrong ans) " + score);
+      incVar++;
     } else if (timeLeft === 0) {
     }
   }
