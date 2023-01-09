@@ -2,8 +2,7 @@
 // Declare Variables - order matters query selector, first class chosen and doesn't look beyond 
 const startEl = document.getElementById("start")
 let countEl = document.getElementById('timeRemain');
-let timeLeft = 5;
-let score = localStorage.getItem('score') || []; //set default score to 0
+let timeLeft = 40;
 let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
 
 // Event listener to initiate countdown when click Start button
@@ -45,90 +44,92 @@ function displayForm(){
 
 //Setup array of objects //Objects are within {} //Keys (same) listed within multiple objects
 let userArray = [
- {
-  quest: "What characters are used to comment out lines of code in JavaScript?",
-  options: ["||","//","/* */","Ctrl+alt+delete"],
-  ans: "//", //answer key
-  //if options[i]=ans then DISPLAY yes else "wrong answer" and reduce timer
-},
- {
-  quest: "Which is NOT an example of a combinator selector in CSS?",
-  options: ["li a {}","ul ~ p {}","a[href=''] {}","ul + p {}"],
-  ans: "a[href='']{}" //answer key
-},
- {
-  quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )?",
-  options: ["click","mouseout","mousmove","updelete"],
-  ans: "updelete" 
-},
- {
-  quest: "Which of the following is incorrect?",
-  options: ["DOM=Document Object Model","URL=Universal Resource Location","API=Application Programming Interface","NaN=Not a number"],
-  ans: "URL=Universal Resource Location" 
-},
- {
-  quest: "How do you say the following character: % ? (Hint: not percent)",
-  options: ["Modulus","Truthy","Division","Octothorp"],
-  ans: "Modulus"
- },
- {
-  quest: "Which of the following is true?",
-  options: ["camelCase","snake_case","PascalCase","All of the above"],
-  ans: "All of the above"
-}
+  {
+    quest: "What characters are used to comment out lines of code in JavaScript?",
+    options: ["||","//","/* */","Ctrl+alt+delete"],
+    ans: "//", //answer key
+    //if options[i]=ans then DISPLAY yes else "wrong answer" and reduce timer
+  },
+  {
+    quest: "Which is NOT an example of a combinator selector in CSS?",
+    options: ["li a {}","ul ~ p {}","a[href=''] {}","ul + p {}"],
+    ans: "a[href='']{}" //answer key
+  },
+  {
+    quest: "Which is NOT an example of an event listener (ex. .addEventListener(  )?",
+    options: ["click","mouseout","mousmove","updelete"],
+    ans: "updelete" 
+  },
+  {
+    quest: "Which of the following is incorrect?",
+    options: ["DOM=Document Object Model","URL=Universal Resource Location","API=Application Programming Interface","NaN=Not a number"],
+    ans: "URL=Universal Resource Location" 
+  },
+  {
+    quest: "How do you say the following character: % ? (Hint: not percent)",
+    options: ["Modulus","Truthy","Division","Octothorp"],
+    ans: "Modulus"
+  },
+  {
+    quest: "Which of the following is true?",
+    options: ["camelCase","snake_case","PascalCase","All of the above"],
+    ans: "All of the above"
+  }
 ]
 const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
 
 function quiz() {
-  question.innerHTML="" //Reset screen every time so questions don't stack up
-  let pNew = userArray[0] //start question series here
-  let check = document.createElement("h2")
-    check.innerHTML=pNew.quest
-    question.appendChild(check)
-    check.setAttribute
-    for (let ii = 0; ii < 4; ii++) {
+  question.innerHTML = ""; //Reset screen every time so questions don't stack up
+  let pNew = userArray[0]; //start question series here
+  let i = 0;
+  do {
+  pNew++
+  let score = document.createElement("h3"); 
+  score = []//set default score to 0
+    console.log("pNew " + JSON.stringify(pNew));
+    console.log("score " + score);
+    console.log("pNew.quest " + pNew.quest);
+    console.log("pNew.ans " + pNew.ans);
+  let check = document.createElement("h2");
+  check.innerHTML = pNew.quest;
+  question.appendChild(check);
+  for (let ii = 0; ii < 4; ii++) {
     var q = document.createElement("button")
-    q.innerHTML=userArray[0].options[ii]
+    q.innerHTML=pNew.options[ii]
     question.appendChild(q) //HTML DOM Document Element
     q.setAttribute
-    q.addEventListener("click", function() {
-      // let display = document.createElement("div")
-      if (q = userArray[ii].ans) {
-        pNew++
-        // display.textContent = "Correct!"
-        alert("correct")
-      }
-      else {
-        pNew++
-        // display.textContent = "Wrong answer"
-        alert("wrong")
-      }
-    })
+    q.addEventListener("click", function(event) {
+      let userAns = event.target.textContent
+      if (userAns === pNew.ans) {
+      score += 1;
+      console.log(score);
+    }
+     else {
+      score -= 1;
+      timeLeft -= 5;
+      console.log("score (wrong ans) " + score);
+    }
+  })
   }
-}
+  }
+};
 
-
-
-// SCORE
 
 // STORE INITIALS AND SCORE ON SUBMIT
 var submitButton = document.getElementById("sub")
 
-submitButton.addEventListener("click", function(){
-  localStorage.setItem('score', JSON.stringify([0, 1, 2])); //create string from array
-  console.log(score);
-  // if (enter === "") {
-    //   dispalyMessage("error", "initials cannot be blank")
-    // }
-    // else {
-      //   displayMessage("sucess");
-      // }
-      let initialIn = document.querySelector("input")
-      // let iKey = initialIn[]
-      // localStorage.setItem(iKey,initialIn);
-      console.log(initialIn);
-    });
+submitButton.addEventListener("click", scoreKeep)
+
+let initialIn = document.querySelector("input")
+// let iKey = initialIn[]
+// localStorage.setItem(iKey,initialIn);
+console.log(initialIn);
+
+function scoreKeep(event) {
+  event.preventDefault();
+  localStorage.setItem('score', JSON.stringify(score)); //create string from array
+  };
 
 
 //NOTES FROM TUTOR SESSION 1-6-2023 w/ Dennis I.
