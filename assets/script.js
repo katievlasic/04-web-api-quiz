@@ -4,7 +4,6 @@ const startEl = document.getElementById("start");
 let countEl = document.getElementById("timeRemain");
 let timeLeft = 60;
 let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
-let view = document.getElementById("viewH");
 
 // Event listener to initiate countdown when click Start button
 startEl.addEventListener("click", function () {
@@ -80,57 +79,56 @@ let userArray = [
     options: ["camelCase", "snake_case", "PascalCase", "All of the above"],
     ans: "All of the above",
   },
-]; //why can I not user square brackets here and not define a 'name' for each object???
+];
 
 const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
 
 let incVar = 0;
-// var pNew = userArray[incVar]; //start question series here
-// function renderQuestion(){
-//   let pNew = userArray[incVar];
-//   pNew.innerHTML;
-// }
+let score = document.createElement("h3");
+score = []; //set default score to 0
 
 function quiz() {
-  let score = document.createElement("h3");
   console.log("incVar " + incVar);
   let pNew = userArray[incVar];
-  score = []; //set default score to 0
   // console.log("pNew " + JSON.stringify(pNew));
   // console.log("pNew " + pNew);
   // console.log("pNew.quest " + pNew.quest);
   // console.log("pNew.ans " + pNew.ans);
   // console.log("pNew.options " + pNew.options);
-  question.innerHTML = ""; //Reset screen every time so questions don't stack up
-  let check = document.createElement("h2");
-  check.innerHTML = pNew.quest;
-  question.appendChild(check);
-  for (let ii = 0; ii < 4; ii++) {
-    var q = document.createElement("button");
-    q.innerHTML = pNew.options[ii];
-    question.appendChild(q); //HTML DOM Document Element
-    q.setAttribute("class", "buttonJS");
-    // let updateButton = document.querySelectorAll(buttonJS);
-    q.addEventListener("click", userSelect);
-  }
-  function userSelect(select) {
-    let userAns = select.target.textContent;
-    let ansAns = pNew.ans;
-    if (userAns === ansAns && timeLeft > 0 && incVar < 6) {
-      score++;
-      // console.log(score);
-      // console.log(userAns);
-      incVar++;
-      quiz();
-    } else if (userAns != ansAns && timeLeft > 0 && incVar < 6) {
-      score--;
-      timeLeft -= 5;
-      // console.log("score (wrong ans) " + score);
-      incVar++;
-      quiz();
-    } else if (incVar === 6 || timeLeft === 0) {
-      return;
+  if (incVar >= 6) {
+    return;
+  } else {
+    question.innerHTML = ""; //Reset screen every time so questions don't stack up
+    let check = document.createElement("h2");
+    check.innerHTML = pNew.quest;
+    question.appendChild(check);
+    for (let ii = 0; ii < 4; ii++) {
+      var q = document.createElement("button");
+      q.innerHTML = pNew.options[ii];
+      question.appendChild(q); //HTML DOM Document Element
+      q.setAttribute("class", "buttonJS");
+      // let updateButton = document.querySelectorAll(buttonJS);
+      q.addEventListener("click", userSelect);
+    }
+    function userSelect(select) {
+      let userAns = select.target.textContent;
+      let ansAns = pNew.ans;
+      if (userAns === ansAns && timeLeft > 0 && incVar < 6) {
+        score++;
+        console.log(score);
+        // console.log(userAns);
+        incVar++;
+        quiz();
+      } else if (userAns != ansAns && timeLeft > 0 && incVar < 6) {
+        score--;
+        timeLeft -= 5;
+        console.log("score (wrong ans) " + score);
+        incVar++;
+        quiz();
+      } else if (incVar === 6 || timeLeft === 0) {
+        return;
+      }
     }
   }
 }
@@ -142,15 +140,23 @@ function scoreKeep(event) {
   localStorage.setItem("Initials", initialIn);
   console.log(initialIn);
   localStorage.setItem("Score", JSON.stringify(score)); //create string from array
-  //display final score on submit button
-  // localStorage.getItem("Score", view);
-  //localStorage sandboxed to the browser, when deployed visible
   let displayScore = document.createElement("display");
   displayScore.innerHTML = "Your final score is " + score;
   question.appendChild(displayScore);
 }
 
 // STORE INITIALS AND SCORE ON SUBMIT
+//display final score on submit button
+// view.addEventListener("click", function(event) {
+//   event.preventDefault();
+//   let view = document.getElementById("viewH");
+//   let displayHigh = document.createElement("dispH");
+//   let high = localStorage.getItem("Score", view);
+//   let initi = localStorage.getItem("Initials");
+//   displayHigh.innerHTML = "High Scores: " + high + initi;
+// })
+
+//localStorage sandboxed to the browser, when deployed visible
 
 //NOTES FROM TUTOR SESSION 1-6-2023 w/ Dennis I.
 //Don't reference js as tags! Use the word element
