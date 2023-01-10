@@ -51,12 +51,12 @@ let userArray = [
   {
     quest: "Which is NOT an example of a combinator selector in CSS?",
     options: ["li a {}", "ul ~ p {}", "a[href=''] {}", "ul + p {}"],
-    ans: "a[href='']{}", //answer key
+    ans: "a[href=''] {}", //answer key
   },
   {
     quest:
       "Which is NOT an example of an event listener (ex. .addEventListener(  )?",
-    options: ["click", "mouseout", "mousmove", "updelete"],
+    options: ["click", "mouseout", "mousemove", "updelete"],
     ans: "updelete",
   },
   {
@@ -85,11 +85,16 @@ const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
 
 let incVar = 0;
-var pNew = userArray[incVar]; //start question series here
+// var pNew = userArray[incVar]; //start question series here
+// function renderQuestion(){
+//   let pNew = userArray[incVar];
+//   pNew.innerHTML;
+// }
 
 function quiz() {
   let score = document.createElement("h3");
   console.log("incVar " + incVar);
+  let pNew = userArray[incVar];
   score = []; //set default score to 0
   // console.log("pNew " + JSON.stringify(pNew));
   // console.log("pNew " + pNew);
@@ -116,27 +121,31 @@ function quiz() {
       console.log(score);
       console.log(userAns);
       incVar++;
+      quiz()
     } else if (userAns != ansAns && timeLeft > 0) {
-      score --;
+      score--;
       timeLeft -= 5;
       console.log("score (wrong ans) " + score);
       incVar++;
+      quiz()
     } else if (timeLeft === 0) {
     }
   }
-  var submitButton = document.getElementById("sub");
-  submitButton.addEventListener("click", scoreKeep);
-  function scoreKeep(event) {
-    event.preventDefault();
-    let initialIn = document.querySelector("input").value;
-    localStorage.setItem("Initials", initialIn);
-    console.log(initialIn);
-    localStorage.setItem("Score", JSON.stringify(score)); //create string from array
-    // display final score on submit button
-    let displayScore = document.createElement("display");
-    displayScore.innerHTML = "Your final score is " + score;
-    question.appendChild(displayScore);
-  }
+}
+var submitButton = document.getElementById("sub");
+submitButton.addEventListener("click", scoreKeep);
+function scoreKeep(event) {
+  event.preventDefault();
+  let initialIn = document.querySelector("input").value;
+  localStorage.setItem("Initials", initialIn);
+  console.log(initialIn);
+  localStorage.setItem("Score", JSON.stringify(score)); //create string from array
+  //display final score on submit button
+  //localStorage.getItem to pull/ display local storage value
+  //localStorage sandboxed to the browser, when deployed visible 
+  let displayScore = document.createElement("display");
+  displayScore.innerHTML = "Your final score is " + score;
+  question.appendChild(displayScore);
 }
 
 // STORE INITIALS AND SCORE ON SUBMIT
