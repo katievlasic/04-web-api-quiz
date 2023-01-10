@@ -4,6 +4,7 @@ const startEl = document.getElementById("start");
 let countEl = document.getElementById("timeRemain");
 let timeLeft = 60;
 let question = document.querySelector(".main"); //better to use query selector instead of getElementbyClassName
+let view = document.getElementById("viewH");
 
 // Event listener to initiate countdown when click Start button
 startEl.addEventListener("click", function () {
@@ -104,7 +105,7 @@ function quiz() {
   question.innerHTML = ""; //Reset screen every time so questions don't stack up
   let check = document.createElement("h2");
   check.innerHTML = pNew.quest;
-  question.appendChild(check)
+  question.appendChild(check);
   for (let ii = 0; ii < 4; ii++) {
     var q = document.createElement("button");
     q.innerHTML = pNew.options[ii];
@@ -116,19 +117,20 @@ function quiz() {
   function userSelect(select) {
     let userAns = select.target.textContent;
     let ansAns = pNew.ans;
-    if (userAns === ansAns && timeLeft > 0) {
-      score ++;
-      console.log(score);
-      console.log(userAns);
+    if (userAns === ansAns && timeLeft > 0 && incVar < 6) {
+      score++;
+      // console.log(score);
+      // console.log(userAns);
       incVar++;
-      quiz()
-    } else if (userAns != ansAns && timeLeft > 0) {
+      quiz();
+    } else if (userAns != ansAns && timeLeft > 0 && incVar < 6) {
       score--;
       timeLeft -= 5;
-      console.log("score (wrong ans) " + score);
+      // console.log("score (wrong ans) " + score);
       incVar++;
-      quiz()
-    } else if (timeLeft === 0) {
+      quiz();
+    } else if (incVar === 6 || timeLeft === 0) {
+      return;
     }
   }
 }
@@ -141,8 +143,8 @@ function scoreKeep(event) {
   console.log(initialIn);
   localStorage.setItem("Score", JSON.stringify(score)); //create string from array
   //display final score on submit button
-  //localStorage.getItem to pull/ display local storage value
-  //localStorage sandboxed to the browser, when deployed visible 
+  // localStorage.getItem("Score", view);
+  //localStorage sandboxed to the browser, when deployed visible
   let displayScore = document.createElement("display");
   displayScore.innerHTML = "Your final score is " + score;
   question.appendChild(displayScore);
