@@ -90,15 +90,15 @@ score = []; //set default score to 0
 
 function quiz() {
   console.log("incVar " + incVar);
-  let pNew = userArray[incVar];
-  // console.log("pNew " + JSON.stringify(pNew));
-  // console.log("pNew " + pNew);
-  // console.log("pNew.quest " + pNew.quest);
-  // console.log("pNew.ans " + pNew.ans);
-  // console.log("pNew.options " + pNew.options);
-  if (incVar >= 6) {
-    return;
+  if (incVar === 6) {
+    timeLeft = 0;
   } else {
+    let pNew = userArray[incVar];
+    // console.log("pNew " + JSON.stringify(pNew));
+    // console.log("pNew " + pNew);
+    // console.log("pNew.quest " + pNew.quest);
+    // console.log("pNew.ans " + pNew.ans);
+    // console.log("pNew.options " + pNew.options);
     question.innerHTML = ""; //Reset screen every time so questions don't stack up
     let check = document.createElement("h2");
     check.innerHTML = pNew.quest;
@@ -126,12 +126,11 @@ function quiz() {
         console.log("score (wrong ans) " + score);
         incVar++;
         quiz();
-      } else if (incVar === 6 || timeLeft === 0) {
-        return;
       }
     }
   }
 }
+
 var submitButton = document.getElementById("sub");
 submitButton.addEventListener("click", scoreKeep);
 function scoreKeep(event) {
