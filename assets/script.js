@@ -85,8 +85,7 @@ const lengthQuiz = userArray.length;
 console.log("The total number of questions is " + lengthQuiz);
 
 let incVar = 0;
-let score = document.createElement("h3");
-score = []; //set default score to 0
+let score = 0;
 
 function quiz() {
   console.log("incVar " + incVar);
@@ -136,9 +135,13 @@ submitButton.addEventListener("click", scoreKeep);
 function scoreKeep(event) {
   event.preventDefault();
   let initialIn = document.querySelector("input").value;
-  localStorage.setItem("Initials", initialIn);
-  console.log(initialIn);
-  localStorage.setItem("Score", JSON.stringify(score)); //create string from array
+  let highScore = JSON.parse(localStorage.getItem("HighScore")) || []; // set up for first time taking quiz
+  let obj = { 
+    initials: initialIn,
+    score: score
+  };
+  highScore.push(obj); //add object into array 
+  localStorage.setItem("HighScore", JSON.stringify(highScore)); // same string as line 138 
   let displayScore = document.createElement("display");
   displayScore.innerHTML = "Your final score is " + score;
   question.appendChild(displayScore);
